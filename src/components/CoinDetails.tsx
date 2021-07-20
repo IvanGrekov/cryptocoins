@@ -1,16 +1,20 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {VStack, Heading, Text, HStack, Box} from 'native-base';
+import { StyleSheet } from 'react-native';
+import { VStack, Heading, Text, HStack, Box } from 'native-base';
 
-import {CoinInterface} from '../type';
-import {styleVariables} from '../helpers/styleHelper';
+import { CoinInterface } from '../type';
+import { styleVariables } from '../helpers/styleHelper';
 
-export const CoinDetails = ({coin}: {coin: CoinInterface}) => {
-  const {name, symbol, market_cap_rank} = coin;
+const maxNameLength = 12;
+
+export const CoinDetails = ({ coin }: { coin: CoinInterface }) => {
+  const { name, symbol, market_cap_rank } = coin;
 
   return (
     <VStack space={styleVariables.gapItemDetails}>
-      <Heading style={styles.title}>{name}</Heading>
+      <Heading style={styles.title}>
+        {name.length > maxNameLength ? symbol.toUpperCase() : name}
+      </Heading>
 
       <HStack space={2}>
         <Box style={styles.rankWrapper}>

@@ -1,10 +1,10 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {NativeBaseProvider, StatusBar, Box} from 'native-base';
+import { StyleSheet } from 'react-native';
+import { NativeBaseProvider, StatusBar, Box } from 'native-base';
 
-import {Content} from './src/components/Content';
+import { Content } from './src/components/Content';
 
-import {styleVariables} from './src/helpers/styleHelper';
+import { styleVariables } from './src/helpers/styleHelper';
 
 const App = () => {
   return (

@@ -1,11 +1,11 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {Box, HStack, Text} from 'native-base';
+import { StyleSheet } from 'react-native';
+import { Box, HStack, Text } from 'native-base';
 
-import {LogoImage} from './LogoImage';
+import { LogoImage } from './LogoImage';
 
-import {ImageSizeType} from '../type';
-import {styleVariables} from '../helpers/styleHelper';
+import { ImageSizeType } from '../type';
+import { styleVariables } from '../helpers/styleHelper';
 
 export const Header = () => {
   return (

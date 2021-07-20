@@ -1,28 +1,53 @@
-import React from 'react';
-import {StyleSheet} from 'react-native';
-import {ScrollView, List} from 'native-base';
+import React, { useCallback, useState } from 'react';
+import { StyleSheet } from 'react-native';
+import { FlatList } from 'native-base';
 
-import {ListItem} from './ListItem';
+import { ListItem } from './ListItem';
+import { ListSeparator } from './ListSeparator';
 
-import {CoinInterface} from '../type';
+import { CoinInterface } from '../type';
+import { createKeyExtractor } from '../helpers/flatListHelper';
 
-export const CoinsList = ({coins}: {coins: CoinInterface[]}) => {
+interface Props {
+  coins: CoinInterface[];
+  loadItems: Function;
+}
+
+export const CoinsList = ({ coins, loadItems }: Props) => {
+  const [momentumScroll, setMomentumScroll] = useState(false);
+
+  const renderItem = useCallback(({ item }) => {
+    return <ListItem coin={item} />;
+  }, []);
+
+  const onMomentumScrollBegin = useCallback(() => {
+    setMomentumScroll(false);
+  }, []);
+
+  const onEndReached = useCallback(() => {
+    if (!momentumScroll) {
+      loadItems();
+      setMomentumScroll(true);
+    }
+  }, [loadItems, momentumScroll]);
+
   return (
-    <ScrollView>
-      <List style={styles.list}>
-        {coins.map(item => (
-          <ListItem key={item.id} coin={item} />
-        ))}
-      </List>
-    </ScrollView>
+    <FlatList
+      style={styles.list}
+      data={coins}
+      keyExtractor={createKeyExtractor}
+      renderItem={renderItem}
+      ItemSeparatorComponent={ListSeparator}
+      onMomentumScrollBegin={onMomentumScrollBegin}
+      onEndReachedThreshold={0.25}
+      onEndReached={onEndReached}
+    />
   );
 };
 
 const styles = StyleSheet.create({
   list: {
     borderWidth: 0,
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
     backgroundColor: '#EEEEEE',
   },
 });

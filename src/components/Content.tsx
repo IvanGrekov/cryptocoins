@@ -1,31 +1,62 @@
-import React, {useState, useEffect} from 'react';
-import {StyleSheet} from 'react-native';
-import {Box} from 'native-base';
+import React, { useState, useCallback, useEffect } from 'react';
+import { ActivityIndicator, StyleSheet } from 'react-native';
+import { Box } from 'native-base';
 
-import {Loader} from './Loader';
-import {CoinsList} from './CoinsList';
-import {Header} from './Header';
+import { Loader } from './Loader';
+import { CoinsList } from './CoinsList';
+import { Header } from './Header';
 
-import {getCoinsList} from '../api/cryptocoins';
-import {bgColor} from '../helpers/styleHelper';
+import { getCoinsList, coinsPerPage, maxPagesNumber } from '../api/cryptocoins';
+import { CoinInterface } from '../type';
+import { styleVariables } from '../helpers/styleHelper';
 
 export const Content = () => {
-  const [coinsList, setCoinsList] = useState([]);
+  const [coinsList, setCoinsList] = useState<CoinInterface[]>([]);
+  const [loadingStatus, setLoadingStatus] = useState(false);
 
   useEffect(() => {
     getCoinsList().then(setCoinsList);
   }, []);
+
+  const loadItems = useCallback(() => {
+    if (loadingStatus) {
+      return;
+    }
+
+    setLoadingStatus(true);
+
+    const page = coinsList.length / coinsPerPage + 1;
+
+    if (page === maxPagesNumber) {
+      setLoadingStatus(false);
+      return;
+    }
+
+    getCoinsList(page).then((data: CoinInterface[]) => {
+      setCoinsList((prevState: CoinInterface[]) => [...prevState, ...data]);
+      setLoadingStatus(false);
+    });
+  }, [coinsList.length, loadingStatus]);
 
   return (
     <Box style={styles.contentBox}>
       {coinsList.length === 0 ? (
         <Loader />
       ) : (
-        <Box>
-          <Box safeAreaTop backgroundColor={bgColor} />
+        <Box style={styles.mainContent}>
+          <Box safeAreaTop backgroundColor={styleVariables.bgColor} />
           <Header />
 
-          <CoinsList coins={coinsList} />
+          {loadingStatus && (
+            <Box style={styles.loadingIndicator}>
+              <ActivityIndicator
+                size="large"
+                style={styles.loadingIndicator}
+                color={styleVariables.bgColor}
+              />
+            </Box>
+          )}
+          <CoinsList coins={coinsList} loadItems={loadItems} />
         </Box>
       )}
     </Box>
@@ -35,5 +66,20 @@ export const Content = () => {
 const styles = StyleSheet.create({
   contentBox: {
     height: '100%',
+  },
+  mainContent: {
+    height: '100%',
+  },
+  loadingIndicator: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+
+    zIndex: 1,
+
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

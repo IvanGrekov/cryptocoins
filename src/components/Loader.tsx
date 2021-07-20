@@ -1,9 +1,9 @@
 import React from 'react';
-import {Center} from 'native-base';
+import { Center } from 'native-base';
 
-import {LogoImage} from './LogoImage';
+import { LogoImage } from './LogoImage';
 
-import {ImageSizeType} from '../type';
+import { ImageSizeType } from '../type';
 
 export const Loader = () => {
   return (
