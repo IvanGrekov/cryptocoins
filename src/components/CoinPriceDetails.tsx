@@ -6,13 +6,11 @@ import { CoinInterface } from '../type';
 import { styleVariables } from '../helpers/styleHelper';
 
 export const CoinPriceDetails = ({ coin }: { coin: CoinInterface }) => {
-  const { current_price, market_cap } = coin;
-
-  const preparedMarketCap = (market_cap / 1000_000_000).toFixed(2);
+  const preparedMarketCap = (coin.market_cap / 1000_000_000).toFixed(2);
 
   return (
     <VStack space={styleVariables.gapItemDetails}>
-      <Text style={styles.price}>{`$${current_price}`}</Text>
+      <Text style={styles.price}>{`$${coin.current_price}`}</Text>
 
       <Text style={styles.marketCap}>
         {`Market cap: $${preparedMarketCap} bln`}

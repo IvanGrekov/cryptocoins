@@ -8,20 +8,20 @@ import { styleVariables } from '../helpers/styleHelper';
 const maxNameLength = 12;
 
 export const CoinDetails = ({ coin }: { coin: CoinInterface }) => {
-  const { name, symbol, market_cap_rank } = coin;
-
   return (
     <VStack space={styleVariables.gapItemDetails}>
       <Heading style={styles.title}>
-        {name.length > maxNameLength ? symbol.toUpperCase() : name}
+        {coin.name.length > maxNameLength
+          ? coin.symbol.toUpperCase()
+          : coin.name}
       </Heading>
 
       <HStack space={2}>
         <Box style={styles.rankWrapper}>
-          <Text style={styles.rank}>{market_cap_rank}</Text>
+          <Text style={styles.rank}>{coin.market_cap_rank}</Text>
         </Box>
 
-        <Text style={styles.symbol}>{symbol.toUpperCase()}</Text>
+        <Text style={styles.symbol}>{coin.symbol.toUpperCase()}</Text>
       </HStack>
     </VStack>
   );
