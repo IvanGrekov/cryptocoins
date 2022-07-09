@@ -1,3 +1,3 @@
 # cryptocoins-ivan-grekov
 
-Трекер криптовалют.
+Cryptocurrency tracker
