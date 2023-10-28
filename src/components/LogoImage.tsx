@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image } from 'native-base';
 
-import { ImageSizeType } from '../type';
+import { ImageSizeType } from '../types';
 
 export const LogoImage = ({ size }: { size: ImageSizeType }) => {
   return (

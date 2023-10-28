@@ -5,7 +5,7 @@ import { FlatList } from 'native-base';
 import { ListItem } from './ListItem';
 import { ListSeparator } from './ListSeparator';
 
-import { CoinInterface } from '../type';
+import { CoinInterface } from '../types';
 import { createKeyExtractor } from '../helpers/flatListHelper';
 
 interface Props {

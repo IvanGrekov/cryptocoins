@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { VStack, Text } from 'native-base';
 
-import { CoinInterface } from '../type';
+import { CoinInterface } from '../types';
 import { styleVariables } from '../helpers/styleHelper';
 
 export const CoinPriceDetails = ({ coin }: { coin: CoinInterface }) => {

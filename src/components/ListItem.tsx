@@ -5,7 +5,7 @@ import { List, HStack, Image } from 'native-base';
 import { CoinDetails } from './CoinDetails';
 import { CoinPriceDetails } from './CoinPriceDetails';
 
-import { CoinInterface } from '../type';
+import { CoinInterface } from '../types';
 import { styleVariables } from '../helpers/styleHelper';
 
 export const ListItem = ({ coin }: { coin: CoinInterface }) => {

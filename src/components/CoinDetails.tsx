@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { VStack, Heading, Text, HStack, Box } from 'native-base';
 
-import { CoinInterface } from '../type';
+import { CoinInterface } from '../types';
 import { styleVariables } from '../helpers/styleHelper';
 
 const maxNameLength = 12;

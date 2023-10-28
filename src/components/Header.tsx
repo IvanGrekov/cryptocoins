@@ -4,7 +4,7 @@ import { Box, HStack, Text } from 'native-base';
 
 import { LogoImage } from './LogoImage';
 
-import { ImageSizeType } from '../type';
+import { ImageSizeType } from '../types';
 import { styleVariables } from '../helpers/styleHelper';
 
 export const Header = () => {

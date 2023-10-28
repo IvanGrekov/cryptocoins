@@ -1,8 +1,8 @@
-const maxCoinsLength = 250;
-export const coinsPerPage = 10;
-export const maxPagesNumber = maxCoinsLength / coinsPerPage + 1;
+const MAX_COINS_LENGTH = 250;
+export const COINS_PER_PAGE = 10;
+export const MAX_PAGE_NUMBER = MAX_COINS_LENGTH / COINS_PER_PAGE + 1;
 
-const baseURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${coinsPerPage}`;
+const baseURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${COINS_PER_PAGE}`;
 
 export const getCoinsList = (page: number = 1) =>
   fetch(`${baseURL}&page=${page}`)

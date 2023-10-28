@@ -6,8 +6,8 @@ import { Loader } from './Loader';
 import { CoinsList } from './CoinsList';
 import { Header } from './Header';
 
-import { getCoinsList, coinsPerPage, maxPagesNumber } from '../api/cryptocoins';
-import { CoinInterface } from '../type';
+import { getCoinsList, COINS_PER_PAGE, MAX_PAGE_NUMBER } from '../api/cryptocoins';
+import { CoinInterface } from '../types';
 import { styleVariables } from '../helpers/styleHelper';
 
 export const Content = () => {
@@ -25,9 +25,9 @@ export const Content = () => {
 
     setLoadingStatus(true);
 
-    const page = coinsList.length / coinsPerPage + 1;
+    const page = coinsList.length / COINS_PER_PAGE + 1;
 
-    if (page === maxPagesNumber) {
+    if (page === MAX_PAGE_NUMBER) {
       setLoadingStatus(false);
       return;
     }
